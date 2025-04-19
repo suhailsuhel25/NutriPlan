@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Pola Makan Sehat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            100: '#D6F1FF',
+                            200: '#9BD9FF',
+                            300: '#4EB9F6',
+                            400: '#007BDF',
+                            500: '#003D9D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            background-color: linear-gradient (rgba(0,0,0,0.3));
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .hero-btn:hover::after {
+            left: 100%;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007BDF;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007BDF;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Header scroll effect */
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Mobile menu animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        #mobile-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .food-card {
+            transition: all 0.3s ease;
+        }
+        
+        .food-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .tab-active {
+            border-bottom: 3px solid #007BDF;
+            color: #007BDF;
+            font-weight: 600;
+        }
+        
+        .calorie-table {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .calorie-table::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .calorie-table::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .calorie-table::-webkit-scrollbar-thumb {
+            background: #007BDF;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-lg sticky top-0 z-50 transition-all duration-300" id="header">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-apple-alt text-2xl text-primary-400"></i>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary-400 to-primary-500 bg-clip-text text-transparent">
+                    <a href="index.html">NutriPlan</a>    
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-primary-400 font-medium transition-colors duration-300">Beranda</a>
+                    <a href="#pengertian" class="nav-link text-gray-700 hover:text-primary-400 font-medium transition-colors duration-300">Pengertian</a>
+                    <a href="#manfaat" class="nav-link text-gray-700 hover:text-primary-400 font-medium transition-colors duration-300">Manfaat</a>
+                    <a href="#menu" class="nav-link text-gray-700 hover:text-primary-400 font-medium transition-colors duration-300">Menu</a>
+                    <a href="#kalkulator" class="nav-link text-gray-700 hover:text-primary-400 font-medium transition-colors duration-300">Kalkulator</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-primary-400 transition-colors duration-300">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-primary-400 hover:bg-primary-50 px-4 py-2 rounded-lg transition-all duration-300">Beranda</a>
+                    <a href="#pengertian" class="text-gray-700 hover:text-primary-400 hover:bg-primary-50 px-4 py-2 rounded-lg transition-all duration-300">Pengertian</a>
+                    <a href="#manfaat" class="text-gray-700 hover:text-primary-400 hover:bg-primary-50 px-4 py-2 rounded-lg transition-all duration-300">Manfaat</a>
+                    <a href="#menu" class="text-gray-700 hover:text-primary-400 hover:bg-primary-50 px-4 py-2 rounded-lg transition-all duration-300">Menu</a>
+                    <a href="#kalkulator" class="bg-primary-400 hover:bg-primary-500 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 text-center">Kalkulator</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white py-24">
+        <div class="container mx-auto px-4 text-center hero-content">
+            <span class="inline-block text-primary-100 text-lg md:text-xl mb-4 font-medium tracking-wider">SELAMAT DATANG DI</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Panduan Pola Makan <span class="text-primary-200">Sehat</span></h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-100 leading-relaxed">Temukan cara mudah untuk hidup lebih sehat dengan pola makan yang seimbang dan bergizi untuk kehidupan yang lebih baik</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#pengertian" class="hero-btn bg-primary-400 hover:bg-primary-500 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Mulai Sekarang</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#menu" class="hero-btn bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-book"></i>
+                    <span>Lihat Panduan</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengertian Section -->
+    <section id="pengertian" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Section Header with Animation -->
+            <div class="text-center mb-16 animate-fade-in-down">
+                <h2 class="text-4xl font-bold text-primary-500 mb-4">Pengertian Dasar</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-300 to-teal-300 mx-auto rounded-full"></div>
+            </div>
+            
+            <!-- Two Column Cards -->
+            <div class="grid md:grid-cols-2 gap-10 mb-20">
+                <!-- Web Panduan Card -->
+                <div class="bg-gradient-to-br from-white to-primary-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-primary-100/30 animate-fade-in-left">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-gradient-to-r from-primary-400 to-teal-400 p-4 rounded-full mr-5 shadow-md">
+                            <i class="fas fa-laptop text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-primary-600">Web Panduan Pola Makan Sehat</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-6">Web panduan pola makan sehat adalah sebuah situs daring (website) yang menyediakan informasi, edukasi, dan rekomendasi terkait dengan praktik pola makan yang baik dan mendukung kesehatan tubuh secara optimal.</p>
+                    <div class="bg-primary-50 rounded-lg p-4 border-l-4 border-primary-400">
+                        <p class="text-primary-700 font-medium">Fitur umum meliputi kalkulator nutrisi, resep sehat, dan panduan diet personal.</p>
+                    </div>
+                </div>
+                
+                <!-- Pola Makan Sehat Card -->
+                <div class="bg-gradient-to-br from-white to-primary-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-primary-100/30 animate-fade-in-right">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-gradient-to-r from-primary-400 to-teal-400 p-4 rounded-full mr-5 shadow-md">
+                            <i class="fas fa-utensils text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-primary-600">Paduan Pola Makan Sehat</h3>
+                    </div>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>Pengertian paduan pola makan sehat adalah kebiasaan mengatur asupan makanan sehari-hari dengan memilih berbagai jenis makanan bergizi seimbang sesuai kebutuhan tubuh, baik dari segi jenis, jumlah, maupun waktu konsumsinya.</p>
+                        
+                        <div class="bg-primary-50 rounded-lg p-4 border-l-4 border-teal-400">
+                            <p class="font-medium text-primary-700">Tujuan utama:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Menjaga kesehatan</li>
+                                <li>Memenuhi kebutuhan nutrisi</li>
+                                <li>Mencegah penyakit</li>
+                                <li>Mendukung pertumbuhan optimal</li>
+                            </ul>
+                        </div>
+                        
+                        <p>Pola makan sehat menekankan pada konsumsi makanan yang mengandung karbohidrat, protein, lemak sehat, serat, vitamin, mineral, dan air dalam proporsi yang tepat.</p>
+                        
+                        <div class="flex items-start bg-primary-50 rounded-lg p-3 mt-4">
+                            <span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm font-semibold mr-3">Update</span>
+                            <p class="text-sm">Di Indonesia, konsep 4 Sehat 5 Sempurna telah digantikan dengan Pedoman Gizi Seimbang yang lebih komprehensif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Isi Piringku Section -->
+            <div class="bg-gradient-to-r from-primary-100/80 to-teal-100/80 p-10 rounded-2xl shadow-lg border border-white/50 backdrop-blur-sm animate-fade-in-up">
+                <h3 class="text-3xl font-semibold text-center text-primary-600 mb-8">Konsep <span class="text-teal-600">"Isi Piringku"</span></h3>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Sayur dan Buah -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
+                        <div class="bg-gradient-to-br from-green-100 to-teal-100 p-5 rounded-full w-28 h-28 flex items-center justify-center mx-auto mb-5 shadow-inner">
+                            <i class="fas fa-carrot text-green-500 text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-600 mb-2">Separuh Piring</h4>
+                        <p class="text-gray-700 mb-3">Sayur dan buah-buahan</p>
+                        <div class="bg-green-50 rounded-lg p-3 text-sm text-green-700">
+                            <i class="fas fa-lightbulb mr-1"></i> Variasikan warna untuk nutrisi lengkap
+                        </div>
+                    </div>
+                    
+                    <!-- Karbohidrat & Protein -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
+                        <div class="bg-gradient-to-br from-amber-100 to-orange-100 p-5 rounded-full w-28 h-28 flex items-center justify-center mx-auto mb-5 shadow-inner">
+                            <i class="fas fa-bread-slice text-amber-500 text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-600 mb-2">Separuh Piring</h4>
+                        <p class="text-gray-700 mb-3">Makanan pokok & lauk pauk</p>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <span class="bg-amber-50 text-amber-700 text-xs py-1 px-2 rounded">Karbohidrat</span>
+                            <span class="bg-blue-50 text-blue-700 text-xs py-1 px-2 rounded">Protein</span>
+                            <span class="bg-purple-50 text-purple-700 text-xs py-1 px-2 rounded">Serat</span>
+                            <span class="bg-red-50 text-red-700 text-xs py-1 px-2 rounded">Lemak Sehat</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Air Putih -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
+                        <div class="bg-gradient-to-br from-blue-100 to-cyan-100 p-5 rounded-full w-28 h-28 flex items-center justify-center mx-auto mb-5 shadow-inner">
+                            <i class="fas fa-glass-whiskey text-blue-500 text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-600 mb-2">Pelengkap</h4>
+                        <p class="text-gray-700 mb-3">Air putih sebagai minuman utama</p>
+                        <div class="bg-blue-50 rounded-lg p-3 mt-4">
+                            <p class="text-blue-700 text-sm font-medium">
+                                <i class="fas fa-tint mr-1"></i> Minum 8 gelas/hari
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
+        .animate-fade-in-left { animation: fadeInLeft 0.8s ease-out forwards; }
+        .animate-fade-in-right { animation: fadeInRight 0.8s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    </style>
+
+    <!-- Pentingnya & Manfaat Section -->
+    <section id="manfaat" class="py-20 bg-gradient-to-br from-primary-100 to-primary-300">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-fade-in-down">
+                <h2 class="text-4xl font-bold text-primary-700 mb-4">Pentingnya & Manfaat Pola Makan Sehat</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-teal-400 to-primary-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <!-- Pentingnya Section -->
+            <div class="mb-20">
+                <h3 class="text-3xl font-semibold text-primary-700 mb-8 text-center relative">
+                    <span class="relative z-10 px-4 bg-gradient-to-r from-primary-100 to-primary-300">Mengapa Pola Makan Sehat Penting?</span>
+                    <span class="absolute top-1/2 left-0 right-0 h-0.5 bg-primary-400/30 z-0"></span>
+                </h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up">
+                        <div class="bg-gradient-to-r from-teal-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-brain text-teal-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Asupan Gizi Seimbang</h4>
+                        <p class="text-gray-700 mb-4">Memenuhi asupan gizi dan energi yang dibutuhkan tubuh agar organ dan sistem tubuh berfungsi optimal serta mendukung pertumbuhan dan pemeliharaan kesehatan.</p>
+                        <div class="bg-teal-50 rounded-lg px-3 py-2 inline-block">
+                            <span class="text-teal-700 text-sm font-medium">Fungsi Tubuh Optimal</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-100">
+                        <div class="bg-gradient-to-r from-red-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-shield-heart text-red-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Pencegahan Penyakit Kronis</h4>
+                        <p class="text-gray-700 mb-4">Mencegah berbagai penyakit kronis seperti obesitas, diabetes, penyakit jantung, stroke, hipertensi, dan kanker dengan mengurangi konsumsi gula, garam, dan lemak jenuh berlebih.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-red-50 text-red-700 text-xs py-1 px-2 rounded-full">Diabetes</span>
+                            <span class="bg-red-50 text-red-700 text-xs py-1 px-2 rounded-full">Jantung</span>
+                            <span class="bg-red-50 text-red-700 text-xs py-1 px-2 rounded-full">Stroke</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-200">
+                        <div class="bg-gradient-to-r from-amber-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-weight text-amber-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Menjaga Berat Badan Ideal</h4>
+                        <p class="text-gray-700 mb-4">Menjaga berat badan ideal yang berperan dalam mengurangi risiko penyakit tidak menular dan menjaga kebugaran tubuh.</p>
+                        <div class="bg-amber-50 rounded-lg px-3 py-2 inline-block">
+                            <span class="text-amber-700 text-sm font-medium">BMI Seimbang</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-300">
+                        <div class="bg-gradient-to-r from-blue-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-shield-virus text-blue-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Meningkatkan Imunitas Tubuh</h4>
+                        <p class="text-gray-700 mb-4">Memperkuat sistem kekebalan tubuh sehingga tubuh lebih tahan terhadap infeksi dan penyakit.</p>
+                        <div class="bg-blue-50 rounded-lg px-3 py-2 inline-block">
+                            <span class="text-blue-700 text-sm font-medium">Sistem Imun Kuat</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 5 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-400">
+                        <div class="bg-gradient-to-r from-purple-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-brain text-purple-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Kesehatan Mental & Emosional</h4>
+                        <p class="text-gray-700 mb-4">Meningkatkan kesehatan mental dan emosional dengan nutrisi yang mendukung fungsi otak, mood, dan konsentrasi.</p>
+                        <div class="bg-purple-50 rounded-lg px-3 py-2 inline-block">
+                            <span class="text-purple-700 text-sm font-medium">Mood Stabil</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 6 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-500">
+                        <div class="bg-gradient-to-r from-green-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-heart text-green-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Kualitas Hidup Lebih Baik</h4>
+                        <p class="text-gray-700 mb-4">Meningkatkan kualitas hidup secara keseluruhan, memungkinkan aktivitas yang lebih produktif dan sehat.</p>
+                        <div class="bg-green-50 rounded-lg px-3 py-2 inline-block">
+                            <span class="text-green-700 text-sm font-medium">Hidup Berkualitas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manfaat Section -->
+            <div class="mb-10">
+                <h3 class="text-3xl font-semibold text-primary-700 mb-8 text-center relative">
+                    <span class="relative z-10 px-4 bg-gradient-to-r from-primary-100 to-primary-300">Manfaat Pola Makan Sehat</span>
+                    <span class="absolute top-1/2 left-0 right-0 h-0.5 bg-primary-400/30 z-0"></span>
+                </h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up">
+                        <div class="bg-gradient-to-r from-teal-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-utensils text-teal-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Memenuhi Kebutuhan Gizi dan Energi</h4>
+                        <p class="text-gray-700">Pola makan sehat menyediakan semua nutrisi penting seperti karbohidrat, protein, lemak sehat, vitamin, dan mineral yang dibutuhkan tubuh untuk berfungsi optimal dan berenergi sepanjang hari.</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-100">
+                        <div class="bg-gradient-to-r from-blue-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-shield-heart text-blue-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Meningkatkan Daya Tahan Tubuh</h4>
+                        <p class="text-gray-700">Asupan makanan sehat yang kaya vitamin dan mineral, seperti vitamin C, zinc, dan antioksidan, membantu memperkuat sistem imun sehingga tubuh tidak mudah sakit.</p>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-200">
+                        <div class="bg-gradient-to-r from-amber-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-balance-scale text-amber-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Menjaga Berat Badan Ideal</h4>
+                        <p class="text-gray-700">Pola makan sehat membantu mengontrol asupan kalori, mencegah kelebihan berat badan, dan menjaga berat badan tetap ideal, sehingga menurunkan risiko obesitas dan penyakit terkait.</p>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-300">
+                        <div class="bg-gradient-to-r from-red-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-heartbeat text-red-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Menurunkan Risiko Penyakit Kronis</h4>
+                        <p class="text-gray-700">Mengonsumsi makanan sehat secara teratur dapat menurunkan risiko penyakit jantung, diabetes tipe 2, stroke, hipertensi, dan kanker.</p>
+                    </div>
+                    
+                    <!-- Card 5 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-400">
+                        <div class="bg-gradient-to-r from-purple-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-user-md text-purple-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Menjaga Kesehatan Organ Tubuh</h4>
+                        <p class="text-gray-700">Nutrisi yang cukup dari pola makan sehat membantu menjaga kesehatan organ vital seperti jantung, otak, tulang, gigi, kulit, dan sistem pencernaan.</p>
+                    </div>
+                    
+                    <!-- Card 6 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-500">
+                        <div class="bg-gradient-to-r from-green-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-child text-green-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Mendukung Pertumbuhan dan Perkembangan</h4>
+                        <p class="text-gray-700">Pada anak-anak, pola makan sehat sangat penting untuk mendukung pertumbuhan fisik, perkembangan otak, dan fungsi sistem pencernaan.</p>
+                    </div>
+                    
+                    <!-- Card 7 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-600">
+                        <div class="bg-gradient-to-r from-pink-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-smile text-pink-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Meningkatkan Kesehatan Mental</h4>
+                        <p class="text-gray-700">Nutrisi tertentu, seperti omega-3 dan vitamin B kompleks, dapat meningkatkan fungsi otak, memperbaiki suasana hati, dan mengurangi risiko depresi serta kecemasan.</p>
+                    </div>
+                    
+                    <!-- Card 8 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-700">
+                        <div class="bg-gradient-to-r from-cyan-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-hourglass-half text-cyan-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Umur Panjang & Kualitas Hidup</h4>
+                        <p class="text-gray-700">Pola makan sehat berkontribusi pada kualitas hidup yang lebih baik, tubuh yang lebih bugar, serta potensi umur yang lebih panjang.</p>
+                    </div>
+                    
+                    <!-- Card 9 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-800">
+                        <div class="bg-gradient-to-r from-orange-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-eye text-orange-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Kesehatan Kulit, Gigi, dan Mata</h4>
+                        <p class="text-gray-700">Asupan vitamin dan mineral dari makanan sehat membantu menjaga kesehatan kulit, gigi, dan mata.</p>
+                    </div>
+                    
+                    <!-- Card 10 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up animation-delay-900">
+                        <div class="bg-gradient-to-r from-lime-100 to-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-5 shadow-inner">
+                            <i class="fas fa-apple-alt text-lime-500 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-primary-700 mb-3">Fungsi Sistem Pencernaan</h4>
+                        <p class="text-gray-700">Makanan sehat yang kaya serat membantu menjaga kesehatan saluran pencernaan dan mencegah gangguan seperti sembelit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animation-delay-100 {
+            animation-delay: 100ms;
+        }
+        .animation-delay-200 {
+            animation-delay: 200ms;
+        }
+        .animation-delay-300 {
+            animation-delay: 300ms;
+        }
+        .animation-delay-400 {
+            animation-delay: 400ms;
+        }
+        .animation-delay-500 {
+            animation-delay: 500ms;
+        }
+        .animation-delay-600 {
+            animation-delay: 600ms;
+        }
+        .animation-delay-700 {
+            animation-delay: 700ms;
+        }
+        .animation-delay-800 {
+            animation-delay: 800ms;
+        }
+        .animation-delay-900 {
+            animation-delay: 900ms;
+        }
+    </style>
+
+    <!-- Pembagian Usia Section -->
+    <section class="py-20 bg-gradient-to-b from-white to-primary-50">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-fade-in-down">
+                <h2 class="text-4xl font-bold text-primary-600 mb-4">Pembagian Usia dalam Pola Makan Sehat</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Nutrisi optimal berbeda untuk setiap tahap kehidupan. Temukan rekomendasi khusus untuk usia Anda.</p>
+            </div>
+            
+            <!-- Tab Navigation -->
+            <div class="relative mb-12">
+                <div class="flex overflow-x-auto pb-6 scrollbar-hide">
+                    <div class="flex space-x-3 mx-auto">
+                        <button onclick="showAgeGroup('bayi')" class="tab-button px-6 py-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 border border-primary-100 text-primary-600 font-semibold whitespace-nowrap flex items-center tab-active">
+                            <i class="fas fa-baby text-xl mr-2"></i>
+                            Bayi (0-12 Bulan)
+                        </button>
+                        <button onclick="showAgeGroup('anak')" class="tab-button px-6 py-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 border border-primary-100 text-primary-600 font-semibold whitespace-nowrap flex items-center">
+                            <i class="fas fa-child text-xl mr-2"></i>
+                            Anak (1-12 Tahun)
+                        </button>
+                        <button onclick="showAgeGroup('remaja')" class="tab-button px-6 py-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 border border-primary-100 text-primary-600 font-semibold whitespace-nowrap flex items-center">
+                            <i class="fas fa-user-graduate text-xl mr-2"></i>
+                            Remaja (13-18 Tahun)
+                        </button>
+                        <button onclick="showAgeGroup('dewasa')" class="tab-button px-6 py-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 border border-primary-100 text-primary-600 font-semibold whitespace-nowrap flex items-center">
+                            <i class="fas fa-user-tie text-xl mr-2"></i>
+                            Dewasa (19-59 Tahun)
+                        </button>
+                        <button onclick="showAgeGroup('lansia')" class="tab-button px-6 py-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 border border-primary-100 text-primary-600 font-semibold whitespace-nowrap flex items-center">
+                            <i class="fas fa-user-friends text-xl mr-2"></i>
+                            Lansia (60+ Tahun)
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-primary-100/30 rounded-full"></div>
+            </div>
+            
+            <!-- Content Panels -->
+            <!-- Bayi Panel -->
+            <div id="bayi" class="age-group-content animate-fade-in-up">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gradient-to-br from-blue-50 to-primary-50 p-8 flex flex-col justify-center">
+                            <div class="text-center mb-6">
+                                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-baby-carriage text-blue-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-primary-700 mb-2">Bayi (0-12 Bulan)</h3>
+                                <p class="text-blue-600">Fase Pertumbuhan Cepat</p>
+                            </div>
+                            <img src="https://img.freepik.com/free-vector/baby-food-concept-illustration_114360-7430.jpg" alt="Bayi sehat" class="w-full h-auto max-h-48 object-contain">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-blue-600 mb-4 flex items-center">
+                                        <i class="fas fa-check-circle mr-2"></i> Rekomendasi
+                                    </h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>ASI eksklusif hingga usia 6 bulan</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Setelah 6 bulan, mulai MPASI bergizi seimbang</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Hindari garam, gula, dan makanan olahan</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Perkenalkan satu jenis makanan baru setiap beberapa hari</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Perhatikan tanda alergi makanan</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-blue-600 mb-4 flex items-center">
+                                        <i class="fas fa-utensils mr-2"></i> Contoh Makanan
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <span class="bg-blue-50 text-blue-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-carrot mr-2"></i> Bubur beras
+                                        </span>
+                                        <span class="bg-blue-50 text-blue-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-apple-alt mr-2"></i> Puree buah
+                                        </span>
+                                        <span class="bg-blue-50 text-blue-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-leaf mr-2"></i> Puree sayur
+                                        </span>
+                                        <span class="bg-blue-50 text-blue-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-seedling mr-2"></i> Kacang hijau
+                                        </span>
+                                        <span class="bg-blue-50 text-blue-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-drumstick-bite mr-2"></i> Daging halus
+                                        </span>
+                                        <span class="bg-blue-50 text-blue-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-fish mr-2"></i> Ikan halus
+                                        </span>
+                                    </div>
+                                    <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                        <p class="text-yellow-700 text-sm flex items-start">
+                                            <i class="fas fa-exclamation-circle mr-2 mt-1"></i>
+                                            <span>Hindari madu untuk bayi di bawah 1 tahun karena risiko botulisme</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Anak Panel -->
+            <div id="anak" class="age-group-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gradient-to-br from-green-50 to-primary-50 p-8 flex flex-col justify-center">
+                            <div class="text-center mb-6">
+                                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-child text-green-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-primary-700 mb-2">Anak-anak (1-12 Tahun)</h3>
+                                <p class="text-green-600">Fase Pertumbuhan & Perkembangan</p>
+                            </div>
+                            <img src="https://img.freepik.com/free-vector/happy-kids-jumping_1308-26568.jpg" alt="Anak-anak sehat" class="w-full h-auto max-h-48 object-contain">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-green-600 mb-4 flex items-center">
+                                        <i class="fas fa-check-circle mr-2"></i> Rekomendasi
+                                    </h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 text-green-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Konsumsi makanan bergizi seimbang: karbohidrat, protein, lemak sehat, sayur, dan buah</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 text-green-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Batasi makanan manis, asin, dan berlemak tinggi</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 text-green-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Pastikan cukup minum air putih (6-8 gelas/hari)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 text-green-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Aktif bergerak minimal 60 menit setiap hari</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 text-green-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Jadwal makan teratur (3x makan utama + 2x camilan sehat)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-green-600 mb-4 flex items-center">
+                                        <i class="fas fa-utensils mr-2"></i> Contoh Makanan
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <span class="bg-green-50 text-green-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-bread-slice mr-2"></i> Roti gandum
+                                        </span>
+                                        <span class="bg-green-50 text-green-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-egg mr-2"></i> Telur
+                                        </span>
+                                        <span class="bg-green-50 text-green-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-cheese mr-2"></i> Keju
+                                        </span>
+                                        <span class="bg-green-50 text-green-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-apple-alt mr-2"></i> Buah potong
+                                        </span>
+                                        <span class="bg-green-50 text-green-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-carrot mr-2"></i> Sayuran
+                                        </span>
+                                        <span class="bg-green-50 text-green-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-fish mr-2"></i> Ikan
+                                        </span>
+                                    </div>
+                                    <div class="mt-6 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                                        <p class="text-blue-700 text-sm flex items-start">
+                                            <i class="fas fa-lightbulb mr-2 mt-1"></i>
+                                            <span>Libatkan anak dalam memilih dan menyiapkan makanan sehat untuk meningkatkan minat mereka</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Remaja Panel -->
+            <div id="remaja" class="age-group-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gradient-to-br from-purple-50 to-primary-50 p-8 flex flex-col justify-center">
+                            <div class="text-center mb-6">
+                                <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-user-graduate text-purple-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-primary-700 mb-2">Remaja (13-18 Tahun)</h3>
+                                <p class="text-purple-600">Fase Pertumbuhan Pesat & Pubertas</p>
+                            </div>
+                            <img src="https://img.freepik.com/free-vector/teenagers-posing-together_23-2148873432.jpg" alt="Remaja sehat" class="w-full h-auto max-h-48 object-contain">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-purple-600 mb-4 flex items-center">
+                                        <i class="fas fa-check-circle mr-2"></i> Rekomendasi
+                                    </h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Tingkatkan konsumsi zat besi (terutama remaja putri), kalsium, dan protein</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Hindari makanan cepat saji berlebihan dan minuman bersoda</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Jaga pola makan teratur, hindari melewatkan sarapan</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Perhatikan asupan kalsium untuk pertumbuhan tulang maksimal</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Konsumsi cukup serat untuk kesehatan pencernaan</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-purple-600 mb-4 flex items-center">
+                                        <i class="fas fa-utensils mr-2"></i> Contoh Makanan
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <span class="bg-purple-50 text-purple-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-fish mr-2"></i> Ikan salmon
+                                        </span>
+                                        <span class="bg-purple-50 text-purple-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-egg mr-2"></i> Telur
+                                        </span>
+                                        <span class="bg-purple-50 text-purple-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-cheese mr-2"></i> Produk susu
+                                        </span>
+                                        <span class="bg-purple-50 text-purple-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-drumstick-bite mr-2"></i> Daging tanpa lemak
+                                        </span>
+                                        <span class="bg-purple-50 text-purple-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-seedling mr-2"></i> Kacang-kacangan
+                                        </span>
+                                        <span class="bg-purple-50 text-purple-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-leaf mr-2"></i> Sayuran hijau
+                                        </span>
+                                    </div>
+                                    <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                        <p class="text-yellow-700 text-sm flex items-start">
+                                            <i class="fas fa-exclamation-circle mr-2 mt-1"></i>
+                                            <span>Remaja membutuhkan 25-50% lebih banyak nutrisi dibanding orang dewasa untuk mendukung pertumbuhan</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dewasa Panel -->
+            <div id="dewasa" class="age-group-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gradient-to-br from-orange-50 to-primary-50 p-8 flex flex-col justify-center">
+                            <div class="text-center mb-6">
+                                <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-user-tie text-orange-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-primary-700 mb-2">Dewasa (19-59 Tahun)</h3>
+                                <p class="text-orange-600">Fase Pemeliharaan Kesehatan</p>
+                            </div>
+                            <img src="https://img.freepik.com/free-vector/healthy-lifestyle-concept-illustration_114360-7454.jpg" alt="Dewasa sehat" class="w-full h-auto max-h-48 object-contain">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-orange-600 mb-4 flex items-center">
+                                        <i class="fas fa-check-circle mr-2"></i> Rekomendasi
+                                    </h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Prioritaskan makanan tinggi serat (sayur, buah, gandum utuh)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Jaga asupan lemak jenuh dan gula tambahan tetap rendah</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Sesuaikan kebutuhan kalori dengan aktivitas harian</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Perhatikan keseimbangan nutrisi dan porsi makan</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 text-orange-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Hindari makan berlebihan di malam hari</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-orange-600 mb-4 flex items-center">
+                                        <i class="fas fa-utensils mr-2"></i> Contoh Makanan
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <span class="bg-orange-50 text-orange-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-leaf mr-2"></i> Sayuran hijau
+                                        </span>
+                                        <span class="bg-orange-50 text-orange-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-fish mr-2"></i> Ikan berlemak
+                                        </span>
+                                        <span class="bg-orange-50 text-orange-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-seedling mr-2"></i> Biji-bijian
+                                        </span>
+                                        <span class="bg-orange-50 text-orange-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-apple-alt mr-2"></i> Buah beri
+                                        </span>
+                                        <span class="bg-orange-50 text-orange-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-egg mr-2"></i> Telur
+                                        </span>
+                                        <span class="bg-orange-50 text-orange-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-cheese mr-2"></i> Yogurt
+                                        </span>
+                                    </div>
+                                    <div class="mt-6 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                                        <p class="text-blue-700 text-sm flex items-start">
+                                            <i class="fas fa-lightbulb mr-2 mt-1"></i>
+                                            <span>Dewasa aktif membutuhkan 2000-3000 kalori/hari tergantung jenis kelamin dan aktivitas</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lansia Panel -->
+            <div id="lansia" class="age-group-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gradient-to-br from-red-50 to-primary-50 p-8 flex flex-col justify-center">
+                            <div class="text-center mb-6">
+                                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-user-friends text-red-500 text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-primary-700 mb-2">Lansia (60+ Tahun)</h3>
+                                <p class="text-red-600">Fase Penuaan Sehat</p>
+                            </div>
+                            <img src="https://img.freepik.com/free-vector/elderly-couple-enjoying-walk-park_74855-5275.jpg" alt="Lansia sehat" class="w-full h-auto max-h-48 object-contain">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-red-600 mb-4 flex items-center">
+                                        <i class="fas fa-check-circle mr-2"></i> Rekomendasi
+                                    </h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Fokus pada makanan mudah dicerna dan tinggi nutrisi</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Tambahkan sumber kalsium dan vitamin D untuk kesehatan tulang</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Perhatikan asupan cairan untuk mencegah dehidrasi</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Makan dalam porsi kecil tapi sering (5-6x/hari)</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-check text-xs"></i></span>
+                                            <span>Perhatikan asupan protein untuk mencegah sarcopenia (kehilangan massa otot)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-red-600 mb-4 flex items-center">
+                                        <i class="fas fa-utensils mr-2"></i> Contoh Makanan
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <span class="bg-red-50 text-red-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-fish mr-2"></i> Ikan kukus
+                                        </span>
+                                        <span class="bg-red-50 text-red-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-egg mr-2"></i> Telur rebus
+                                        </span>
+                                        <span class="bg-red-50 text-red-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-cheese mr-2"></i> Yogurt
+                                        </span>
+                                        <span class="bg-red-50 text-red-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-apple-alt mr-2"></i> Pisang
+                                        </span>
+                                        <span class="bg-red-50 text-red-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-carrot mr-2"></i> Sup sayuran
+                                        </span>
+                                        <span class="bg-red-50 text-red-700 text-sm py-2 px-3 rounded-lg flex items-center">
+                                            <i class="fas fa-seedling mr-2"></i> Kacang lentil
+                                        </span>
+                                    </div>
+                                    <div class="mt-6 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                                        <p class="text-blue-700 text-sm flex items-start">
+                                            <i class="fas fa-lightbulb mr-2 mt-1"></i>
+                                            <span>Lansia membutuhkan lebih banyak protein per kg berat badan dibanding dewasa muda untuk mempertahankan massa otot</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Tips -->
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-4">Gunakan tab di atas untuk melihat rekomendasi nutrisi untuk kelompok usia lainnya</p>
+                <div class="flex justify-center space-x-3">
+                    <span class="w-3 h-3 bg-primary-400 rounded-full"></span>
+                    <span class="w-3 h-3 bg-primary-200 rounded-full"></span>
+                    <span class="w-3 h-3 bg-primary-200 rounded-full"></span>
+                    <span class="w-3 h-3 bg-primary-200 rounded-full"></span>
+                    <span class="w-3 h-3 bg-primary-200 rounded-full"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <script>
+        function showAgeGroup(group) {
+            // Hide all content panels
+            document.querySelectorAll('.age-group-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show selected content panel
+            document.getElementById(group).classList.remove('hidden');
+            
+            // Update tab active states
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            event.currentTarget.classList.add('tab-active');
+            
+            // Update navigation dots
+            const dots = document.querySelectorAll('.flex.justify-center.space-x-3 span');
+            const groups = ['bayi', 'anak', 'remaja', 'dewasa', 'lansia'];
+            const index = groups.indexOf(group);
+            
+            dots.forEach((dot, i) => {
+                dot.classList.remove('bg-primary-400');
+                dot.classList.add('bg-primary-200');
+            });
+            
+            dots[index].classList.remove('bg-primary-200');
+            dots[index].classList.add('bg-primary-400');
+        }
+    </script>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-primary-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-primary-500 mb-12">Menu Panduan Pola Makan Sehat</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Bayi 6 Bulan -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden food-card">
+                    <div class="h-40 bg-primary-200 flex items-center justify-center">
+                        <i class="fas fa-baby text-primary-500 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-primary-500 mb-3">Bayi (6 Bulan)</h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-primary-400 mb-1">Makanan:</h4>
+                            <p class="text-gray-700">Bubur sup daging kacang merah, bubur sayur</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-primary-400 mb-1">Camilan:</h4>
+                            <p class="text-gray-700">Puree buah (apel, pisang, alpukat)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Anak-anak -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden food-card">
+                    <div class="h-40 bg-primary-200 flex items-center justify-center">
+                        <i class="fas fa-child text-primary-500 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-primary-500 mb-3">Anak-anak (6-12 Tahun)</h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-primary-400 mb-1">Makanan:</h4>
+                            <p class="text-gray-700">Sup telur puyuh, salad sayur dada ayam, orek tempe, ikan bumbu kuning</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-primary-400 mb-1">Camilan:</h4>
+                            <p class="text-gray-700">Salad buah, yogurt, pudding susu</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Remaja -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden food-card">
+                    <div class="h-40 bg-primary-200 flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-primary-500 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-primary-500 mb-3">Remaja (13-18 Tahun)</h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-primary-400 mb-1">Sarapan:</h4>
+                            <p class="text-gray-700">Nasi uduk, telur balado, tahu, sayur kol, susu</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-primary-400 mb-1">Makan Siang:</h4>
+                            <p class="text-gray-700">Nasi putih, tumis brokoli wortel, daging sapi, tempe</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dewasa -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden food-card">
+                    <div class="h-40 bg-primary-200 flex items-center justify-center">
+                        <i class="fas fa-user text-primary-500 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-primary-500 mb-3">Dewasa (19-59 Tahun)</h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-primary-400 mb-1">Sarapan:</h4>
+                            <p class="text-gray-700">Telur, roti gandum, yogurt dengan buah, oat meal</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-primary-400 mb-1">Makan Siang:</h4>
+                            <p class="text-gray-700">Salad ayam, ikan panggang, sup jagung</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lansia -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden food-card">
+                    <div class="h-40 bg-primary-200 flex items-center justify-center">
+                        <i class="fas fa-user-friends text-primary-500 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-primary-500 mb-3">Lansia (60+ Tahun)</h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-primary-400 mb-1">Sarapan:</h4>
+                            <p class="text-gray-700">Telur rebus, papaya, pisang</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-primary-400 mb-1">Makan Siang:</h4>
+                            <p class="text-gray-700">Nasi dengan tempe, sayur bayam, ikan laut</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panduan Gizi -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden food-card">
+                    <div class="h-40 bg-primary-200 flex items-center justify-center">
+                        <i class="fas fa-book text-primary-500 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-primary-500 mb-3">Panduan Gizi Seimbang</h3>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                            <li>Nikmati beragam makanan</li>
+                            <li>Biasakan makan makanan pokok</li>
+                            <li>Konsumsi lauk pauk berprotein</li>
+                            <li>Banyak sayur dan buah</li>
+                            <li>Batasi gula, garam, lemak</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kandungan Pola Makan Sehat Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-primary-500 mb-12">Kandungan Pola Makan Sehat</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Karbohidrat -->
+                <div class="bg-primary-50 p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-400 p-3 rounded-full mr-4">
+                            <i class="fas fa-bread-slice text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-500">Karbohidrat</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Sumber energi utama tubuh, terutama dari karbohidrat kompleks.</p>
+                    <h4 class="font-medium text-primary-400 mb-1">Contoh:</h4>
+                    <p class="text-gray-700">Nasi merah, gandum utuh, ubi, jagung, kentang</p>
+                </div>
+                
+                <!-- Protein -->
+                <div class="bg-primary-50 p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-400 p-3 rounded-full mr-4">
+                            <i class="fas fa-drumstick-bite text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-500">Protein</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Penting untuk pertumbuhan, perbaikan sel, dan sumber energi cadangan.</p>
+                    <h4 class="font-medium text-primary-400 mb-1">Contoh:</h4>
+                    <p class="text-gray-700">Daging tanpa lemak, ikan, telur, susu, tempe, tahu, kacang-kacangan</p>
+                </div>
+                
+                <!-- Lemak Sehat -->
+                <div class="bg-primary-50 p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-400 p-3 rounded-full mr-4">
+                            <i class="fas fa-oil-can text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-500">Lemak Sehat</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Meningkatkan kolesterol baik (HDL) dan menurunkan risiko penyakit jantung.</p>
+                    <h4 class="font-medium text-primary-400 mb-1">Contoh:</h4>
+                    <p class="text-gray-700">Alpukat, kacang-kacangan, minyak zaitun, ikan salmon, produk kedelai</p>
+                </div>
+                
+                <!-- Vitamin & Mineral -->
+                <div class="bg-primary-50 p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-400 p-3 rounded-full mr-4">
+                            <i class="fas fa-apple-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-500">Vitamin & Mineral</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Nutrisi esensial yang mendukung berbagai fungsi tubuh.</p>
+                    <h4 class="font-medium text-primary-400 mb-1">Contoh:</h4>
+                    <p class="text-gray-700">Sayuran hijau (brokoli, kale, bayam), buah-buahan (jeruk, apel, berry)</p>
+                </div>
+                
+                <!-- Serat -->
+                <div class="bg-primary-50 p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-400 p-3 rounded-full mr-4">
+                            <i class="fas fa-seedling text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-500">Serat</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menjaga kesehatan pencernaan dan mengontrol kadar gula darah.</p>
+                    <h4 class="font-medium text-primary-400 mb-1">Contoh:</h4>
+                    <p class="text-gray-700">Sayuran, buah-buahan, biji-bijian utuh, kacang-kacangan</p>
+                </div>
+                
+                <!-- Air -->
+                <div class="bg-primary-50 p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-400 p-3 rounded-full mr-4">
+                            <i class="fas fa-tint text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-500">Air</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Penting untuk hidrasi dan berbagai proses metabolisme tubuh.</p>
+                    <h4 class="font-medium text-primary-400 mb-1">Rekomendasi:</h4>
+                    <p class="text-gray-700">Minum 8 gelas air putih per hari atau sesuai kebutuhan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panduan Gizi Seimbang -->
+    <section id="manfaat" class="py-16 bg-primary-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-primary-500 mb-12">Panduan Gizi Seimbang</h2>
+            <div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Nikmati dan syukuri beragam makanan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Biasakan makan aneka ragam makanan pokok</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Biasakan makan lauk pauk yang kaya protein</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Banyak makan sayur dan buah-buahan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Batasi makanan asin, manis dan berlemak</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-8 bg-primary-50">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Biasakan sarapan di pagi hari</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Biasakan minum cukup air putih yang aman</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Biasakan membaca label pada kemasan makanan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Lakukan aktivitas fisik secara rutin dan jaga berat badan ideal</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary-400 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Biasakan mencuci tangan dengan sabun dan air mengalir</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <!-- Perhitungan -->
+    <section class="bg-blue-600 p-6 md:p-12 text-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Perhitungan Kebutuhan Kalori Harian</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Card 1 - BMR -->
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 text-gray-800">
+              <h3 class="text-xl md:text-2xl font-bold text-blue-600 mb-4">1. BMR (Basal Metabolic Rate)</h3>
+              <p class="mb-4 text-gray-700">BMR adalah jumlah kalori yang dibutuhkan seseorang untuk melakukan aktivitas minimal, seperti bernafas, mencerna makanan, dan memompa darah.</p>
+              <p class="mb-3 font-medium text-gray-800">Rumus Mifflin St. Jeor:</p>
+              <ul class="list-disc pl-6 space-y-2 bg-blue-50 rounded-lg p-4">
+                <li><strong>Pria</strong> = (10 x BB) + (6.25 x TB) – (5 x Umur) + 5</li>
+                <li><strong>Wanita</strong> = (10 x BB) + (6.25 x TB) – (5 x Umur) – 161</li>
+              </ul>
+            </div>
+            
+            <!-- Card 2 - TDEE -->
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 text-gray-800">
+              <h3 class="text-xl md:text-2xl font-bold text-blue-600 mb-4">2. Kebutuhan Kalori Harian (TDEE)</h3>
+              <p class="mb-4 text-gray-700">Total Daily Energy Expenditure (TDEE) adalah total kalori yang dibutuhkan seseorang dalam melakukan aktivitas sehari-hari.</p>
+              <div class="bg-blue-50 rounded-lg p-4">
+                <p class="font-medium mb-2">Level Aktivitas:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li><strong>Minimal bergerak</strong> (TDEE × 1.2)</li>
+                  <li><strong>Aktivitas ringan</strong> (TDEE × 1.375)</li>
+                  <li><strong>Aktivitas sedang</strong> (TDEE × 1.55)</li>
+                  <li><strong>Aktivitas berat</strong> (TDEE × 1.725)</li>
+                  <li><strong>Aktivitas ekstrem</strong> (TDEE × 1.9)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    <!-- Kalkulator & Tabel Kalori Section -->
+    <section id="kalkulator" class="py-20 bg-gradient-to-b from-primary-50 to-primary-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in-down">
+                <h2 class="text-4xl font-bold text-primary-700 mb-4">Kalkulator Kebutuhan Kalori</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Hitung kebutuhan kalori harian Anda berdasarkan usia, berat badan, tinggi badan, dan tingkat aktivitas</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-10 items-start">
+                <!-- Kalkulator -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-primary-700 mb-6 flex items-center">
+                        <i class="fas fa-calculator text-primary-500 mr-3"></i> Hitung Kebutuhan Kalori Harian
+                    </h3>
+                    
+                    <form id="calorie-form" class="space-y-6">
+                        <!-- Gender -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-3">Jenis Kelamin</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-primary-400 transition-colors duration-200 has-[:checked]:border-primary-500 has-[:checked]:bg-primary-50">
+                                    <input type="radio" name="gender" value="male" checked class="sr-only">
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-mars text-blue-500 text-xl"></i>
+                                        </div>
+                                        <span class="text-gray-700 font-medium">Pria</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-primary-400 transition-colors duration-200 has-[:checked]:border-primary-500 has-[:checked]:bg-primary-50">
+                                    <input type="radio" name="gender" value="female" class="sr-only">
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-venus text-pink-500 text-xl"></i>
+                                        </div>
+                                        <span class="text-gray-700 font-medium">Wanita</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Age -->
+                        <div>
+                            <label for="age" class="block text-gray-700 font-medium mb-2">Usia (tahun)</label>
+                            <div class="relative">
+                                <input type="number" id="age" min="10" max="120" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-200 transition-colors duration-200">
+                                <div class="absolute right-3 top-3 text-gray-400">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Weight -->
+                        <div>
+                            <label for="weight" class="block text-gray-700 font-medium mb-2">Berat Badan (kg)</label>
+                            <div class="relative">
+                                <input type="number" id="weight" min="30" max="300" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-200 transition-colors duration-200">
+                                <div class="absolute right-3 top-3 text-gray-400">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Height -->
+                        <div>
+                            <label for="height" class="block text-gray-700 font-medium mb-2">Tinggi Badan (cm)</label>
+                            <div class="relative">
+                                <input type="number" id="height" min="100" max="250" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-200 transition-colors duration-200">
+                                <div class="absolute right-3 top-3 text-gray-400">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Activity Level -->
+                        <div>
+                            <label for="activity" class="block text-gray-700 font-medium mb-2">Tingkat Aktivitas</label>
+                            <select id="activity" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-200 transition-colors duration-200 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiAjdjE3MUI3QiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZXZyb24tZG93biI+PHBhdGggZD0ibTYgOSA2IDYgNi02Ii8+PC9zdmc+')] bg-no-repeat bg-[position:right_1rem_center] bg-[size:1rem]">
+                                <option value="1.2">Minimal bergerak (kerja kantoran)</option>
+                                <option value="1.375">Aktivitas ringan (olahraga 1-2x/minggu)</option>
+                                <option value="1.55">Aktivitas sedang (olahraga 3-5x/minggu)</option>
+                                <option value="1.725">Aktivitas berat (olahraga 6-7x/minggu)</option>
+                                <option value="1.9">Aktivitas ekstrem (olahraga 2x sehari)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" onclick="calculateCalories()" class="w-full bg-primary-500 hover:bg-primary-400 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center">
+                            <i class="fas fa-calculator mr-2"></i> Hitung Kebutuhan Kalori
+                        </button>
+                    </form>
+                    
+                    <!-- Results -->
+                    <div id="result" class="mt-8 p-6 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl border border-primary-200 hidden animate-fade-in-up">
+                        <h4 class="text-xl font-semibold text-primary-700 mb-4 flex items-center">
+                            <i class="fas fa-chart-bar text-primary-500 mr-2"></i> Hasil Perhitungan
+                        </h4>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <p class="text-sm text-gray-500 mb-1">BMR</p>
+                                <p class="text-2xl font-bold text-primary-600"><span id="bmr-result">0</span> <span class="text-lg">kalori/hari</span></p>
+                                <p class="text-xs text-gray-500 mt-1">Basal Metabolic Rate</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <p class="text-sm text-gray-500 mb-1">TDEE</p>
+                                <p class="text-2xl font-bold text-primary-600"><span id="tdee-result">0</span> <span class="text-lg">kalori/hari</span></p>
+                                <p class="text-xs text-gray-500 mt-1">Total Daily Energy Expenditure</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                            <p class="text-blue-700 text-sm flex items-start">
+                                <i class="fas fa-info-circle mr-2 mt-0.5"></i>
+                                <span>BMR adalah kalori yang dibutuhkan untuk fungsi dasar tubuh. TDEE adalah total kalori yang dibutuhkan termasuk aktivitas fisik Anda.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Penjelasan -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-2xl font-semibold text-primary-700 mb-6 flex items-center">
+                        <i class="fas fa-info-circle text-primary-500 mr-3"></i> Tentang Perhitungan Kalori
+                    </h3>
+                    
+                    <div class="space-y-6 text-gray-700">
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary-700 mb-1">Apa itu BMR?</h4>
+                                <p>Basal Metabolic Rate (BMR) adalah jumlah kalori yang dibutuhkan tubuh untuk melakukan fungsi dasar seperti bernapas, memompa darah, dan mempertahankan suhu tubuh saat istirahat total.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary-700 mb-1">Apa itu TDEE?</h4>
+                                <p>Total Daily Energy Expenditure (TDEE) adalah total kalori yang dibutuhkan tubuh dalam sehari, termasuk BMR dan kalori yang dibakar melalui aktivitas fisik.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 text-primary-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-primary-700 mb-1">Metode Perhitungan</h4>
+                                <p>Kalkulator ini menggunakan rumus Mifflin-St Jeor yang diakui sebagai metode paling akurat untuk menghitung kebutuhan kalori:</p>
+                                <ul class="list-disc pl-5 mt-2 space-y-1">
+                                    <li><strong>Pria:</strong> (10 × berat) + (6.25 × tinggi) - (5 × usia) + 5</li>
+                                    <li><strong>Wanita:</strong> (10 × berat) + (6.25 × tinggi) - (5 × usia) - 161</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                            <p class="text-yellow-700 text-sm flex items-start">
+                                <i class="fas fa-exclamation-triangle mr-2 mt-0.5"></i>
+                                <span>Hasil perhitungan ini adalah estimasi. Untuk rekomendasi yang lebih personal, konsultasikan dengan ahli gizi.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+    
+    <script>
+        function calculateCalories() {
+            // Get input values
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            
+            // Validate inputs
+            if (!age || !weight || !height) {
+                alert('Silakan lengkapi semua data yang diperlukan');
+                return;
+            }
+            
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+            
+            // Calculate TDEE
+            const tdee = bmr * activity;
+            
+            // Display results
+            document.getElementById('bmr-result').textContent = Math.round(bmr);
+            document.getElementById('tdee-result').textContent = Math.round(tdee);
+            
+            // Show result
+            document.getElementById('result').classList.remove('hidden');
+            
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+
+    <!-- Tabel Kalori Makanan -->
+    <section class="py-16 bg-blue-500">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-8">Tabel Kalori Makanan Pokok</h2>
+            <p class="text-center text-primary-100 max-w-2xl mx-auto mb-12">Data kandungan kalori dan unit untuk berbagai jenis makanan pokok</p>
+    
+            <!-- Filter and Search -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                <div class="w-full md:w-auto">
+                    <label for="category-filter" class="sr-only">Filter Kategori</label>
+                    <select id="category-filter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400">
+                        <option value="all">Semua Kategori</option>
+                        <option value="a">Golongan A</option>
+                        <option value="b">Golongan B</option>
+                        <option value="c">Golongan C</option>
+                    </select>
+                </div>
+                <div class="w-full md:w-64 relative">
+                    <input type="text" id="search-food" placeholder="Cari makanan..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+    
+            <!-- Food Table -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nama Masakan</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Berat (gr)</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Kalori</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Unit</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Kategori</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="food-table-body">
+                            <!-- Group A -->
+                            <tr data-category="a" class="bg-blue-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Jagung Rebus</td>
+                                <td class="px-6 py-4 whitespace-nowrap">250</td>
+                                <td class="px-6 py-4 whitespace-nowrap">90,2</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Kentang Rebus</td>
+                                <td class="px-6 py-4 whitespace-nowrap">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap">166</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a" class="bg-blue-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Ketan Putih</td>
+                                <td class="px-6 py-4 whitespace-nowrap">120</td>
+                                <td class="px-6 py-4 whitespace-nowrap">217</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2,75</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Ketupat</td>
+                                <td class="px-6 py-4 whitespace-nowrap">160</td>
+                                <td class="px-6 py-4 whitespace-nowrap">32</td>
+                                <td class="px-6 py-4 whitespace-nowrap">0,5</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a" class="bg-blue-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Lontong</td>
+                                <td class="px-6 py-4 whitespace-nowrap">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap">38</td>
+                                <td class="px-6 py-4 whitespace-nowrap">0,5</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Nasi Putih</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">175</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a" class="bg-blue-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Nasi Putih Kentucky</td>
+                                <td class="px-6 py-4 whitespace-nowrap">225</td>
+                                <td class="px-6 py-4 whitespace-nowrap">349</td>
+                                <td class="px-6 py-4 whitespace-nowrap">4,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Roti Tawar Serat Tinagi</td>
+                                <td class="px-6 py-4 whitespace-nowrap">60</td>
+                                <td class="px-6 py-4 whitespace-nowrap">149</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1,75</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a" class="bg-blue-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Singkong Rebus</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">146</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1,75</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Talas Rebus</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">98</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+                            <tr data-category="a" class="bg-blue-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Ubi Rebus</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">125</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1,5</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Golongan A</span></td>
+                            </tr>
+    
+                            <!-- Group B -->
+                            <tr data-category="b" class="bg-green-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Bubur</td>
+                                <td class="px-6 py-4 whitespace-nowrap">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap">44</td>
+                                <td class="px-6 py-4 whitespace-nowrap">0,5</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+                            <tr data-category="b">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Crakers</td>
+                                <td class="px-6 py-4 whitespace-nowrap">50</td>
+                                <td class="px-6 py-4 whitespace-nowrap">229</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2,75</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+                            <tr data-category="b" class="bg-green-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Makaroni</td>
+                                <td class="px-6 py-4 whitespace-nowrap">25</td>
+                                <td class="px-6 py-4 whitespace-nowrap">91</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+                            <tr data-category="b">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Mie Instant</td>
+                                <td class="px-6 py-4 whitespace-nowrap">50</td>
+                                <td class="px-6 py-4 whitespace-nowrap">168</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+                            <tr data-category="b" class="bg-green-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Nasi Tim</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">88</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+                            <tr data-category="b">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Nasi Uduk</td>
+                                <td class="px-6 py-4 whitespace-nowrap">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap">506</td>
+                                <td class="px-6 py-4 whitespace-nowrap">6,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+                            <tr data-category="b" class="bg-green-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Roti Tawar</td>
+                                <td class="px-6 py-4 whitespace-nowrap">50</td>
+                                <td class="px-6 py-4 whitespace-nowrap">128</td>
+                                <td class="px-6 py-4 whitespace-nowrap">1,5</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Golongan B</span></td>
+                            </tr>
+    
+                            <!-- Group C -->
+                            <tr data-category="c" class="bg-purple-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Bihun Goreng</td>
+                                <td class="px-6 py-4 whitespace-nowrap">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap">296</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3,75</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Bubur Ayam</td>
+                                <td class="px-6 py-4 whitespace-nowrap">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap">165</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c" class="bg-purple-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Bubur Sum-Sum</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">178</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Kentang Goreng</td>
+                                <td class="px-6 py-4 whitespace-nowrap">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap">211</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2,75</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c" class="bg-purple-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Mie Goreng</td>
+                                <td class="px-6 py-4 whitespace-nowrap">200</td>
+                                <td class="px-6 py-4 whitespace-nowrap">321</td>
+                                <td class="px-6 py-4 whitespace-nowrap">4</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Nasi Goreng</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">267</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c" class="bg-purple-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Soun Goreng</td>
+                                <td class="px-6 py-4 whitespace-nowrap">100</td>
+                                <td class="px-6 py-4 whitespace-nowrap">263</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Spaghetti</td>
+                                <td class="px-6 py-4 whitespace-nowrap">300</td>
+                                <td class="px-6 py-4 whitespace-nowrap">642</td>
+                                <td class="px-6 py-4 whitespace-nowrap">8</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                            <tr data-category="c" class="bg-purple-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Tape singkong</td>
+                                <td class="px-6 py-4 whitespace-nowrap">150</td>
+                                <td class="px-6 py-4 whitespace-nowrap">260</td>
+                                <td class="px-6 py-4 whitespace-nowrap">3,25</td>
+                                <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Golongan C</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Note -->
+            <div class="mt-6 text-center text-sm text-primary-100">
+                <p>* Data kalori dapat bervariasi tergantung cara pengolahan dan bahan tambahan</p>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Filter functionality
+        document.getElementById('category-filter').addEventListener('change', function() {
+            const category = this.value;
+            const rows = document.querySelectorAll('#food-table-body tr');
+            
+            rows.forEach(row => {
+                if (category === 'all' || row.getAttribute('data-category') === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    
+        // Search functionality
+        document.getElementById('search-food').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#food-table-body tr');
+            
+            rows.forEach(row => {
+                const foodName = row.querySelector('td:first-child').textContent.toLowerCase();
+                if (foodName.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    
+
+    <!-- Footer -->
+    <footer class="bg-primary-500 text-white py-8">
+            <div class="text-center text-primary-100">
+                <p>&copy; 2023 NutriPlan. All rights reserved.</p>
+            </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      document
+        .getElementById("mobile-menu-button")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
+          setTimeout(() => {
+            mobileMenu.classList.toggle("show");
+          }, 10);
+        });
+
+      // Header scroll effect
+      window.addEventListener("scroll", function() {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function(e) {
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        
+        if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target) && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.remove("show");
+          setTimeout(() => {
+            mobileMenu.classList.add("hidden");
+          }, 300);
+        }
+      });
+
+        // Function to show age group content
+        function showAgeGroup(group) {
+            // Hide all age group contents
+            document.querySelectorAll('.age-group-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show selected age group content
+            document.getElementById(group).classList.remove('hidden');
+            
+            // Update active tab
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('tab-active');
+            });
+            
+            // Find the button that was clicked and make it active
+            const buttons = document.querySelectorAll('.tab-button');
+            for (let i = 0; i < buttons.length; i++) {
+                if (buttons[i].textContent.includes(group.charAt(0).toUpperCase() + group.slice(1))) {
+                    buttons[i].classList.add('tab-active');
+                    break;
+                }
+            }
+        }
+        
+        // Function to calculate calories
+        function calculateCalories() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            
+            if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+                alert('Harap isi semua data dengan benar!');
+                return;
+            }
+            
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+            
+            const tdee = bmr * activity;
+            
+            document.getElementById('bmr-result').textContent = Math.round(bmr);
+            document.getElementById('tdee-result').textContent = Math.round(tdee);
+            document.getElementById('result').classList.remove('hidden');
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
